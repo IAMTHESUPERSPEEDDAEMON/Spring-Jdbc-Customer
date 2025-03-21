@@ -1,0 +1,93 @@
+
+REST API Customer
+---------------------
+
+(1) Створення даних
+
+POST
+http://localhost:8080/Spring-Jdbc-Customer-0.0.1-SNAPSHOT/api/v1/customers
+
+Виконуємо окремі запити
+
+{
+    "fullName": "Tom Anderson",
+    "email": "tom@mail.com",
+    "socialSecurityNumber": 123456789,
+}
+
+{
+    "fullName": "Angela Jason",
+    "email": "angela@mail.com",
+    "socialSecurityNumber": 123456788,
+}
+
+{
+    "fullName": "Fill Spenser",
+    "email": "fill@mail.com",
+    "socialSecurityNumber": 123456389,
+}
+
+{
+    "fullName": "Bob Marley",
+    "email": "bob@mail.com",
+    "socialSecurityNumber": 148832113,
+}
+
+{
+    "fullName": "Jason Statham",
+    "email": "jason@mail.com",
+    "socialSecurityNumber": 123123789,
+}
+
+Перевіремо через MySQL Workbench.
+
+(2) Отримання всіх даних
+
+GET
+http://localhost:8080/Spring-Jdbc-Customer-0.0.1-SNAPSHOT/api/v1/customers
+
+(3) Отримання даних за id
+
+GET
+http://localhost:8080/Spring-Jdbc-Customer-0.0.1-SNAPSHOT/api/v1/customers/3
+
+Також, за неіснуючим id
+
+GET
+http://localhost:8080/Spring-Jdbc-Customer-0.0.1-SNAPSHOTapi/v1/customers/9
+
+(4) Оновлення даних за id
+
+PUT
+http://localhost:8080/Spring-Jdbc-Customer-0.0.1-SNAPSHOT/api/v1/customers/3
+
+{
+    "fullName": "Monika Spenser",
+    "email": "spenser@mail.com",
+    "socialSecurityNumber": 123456389,
+}
+
+(5) Отримання даних за email
+
+GET
+http://localhost:8080/Spring-Jdbc-Customer-0.0.1-SNAPSHOT/api/v1/customers/jason@mail.com
+
+(6) Отримання даних за socialSecurityNumber
+
+GET
+http://localhost:8080/Spring-Jdbc-Customer-0.0.1-SNAPSHOT/api/v1/customers/148832113
+
+Перевіремо через MySQL Workbench та REST-запит за відповідним id.
+
+Також, спробуємо оновити за неіснуючим id.
+
+(7) Видалення даних за id
+
+DELETE
+http://localhost:8080/Spring-Jdbc-Customer-0.0.1-SNAPSHOT/api/v1/products/4
+
+Перевіремо через MySQL Workbench, REST-запити отримання всіх даних
+та за відповідним id.
+
+Також, спробуємо повторно видалити та тим самим id, та за неіснуючим id.
+
