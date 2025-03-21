@@ -23,13 +23,13 @@ public class CustomerDaoImpl implements BaseDao{
 
     @Override
     public boolean create(CustomerDtoRequest request) {
-        String sql = "insert into customer (full_name, email, ssn) values (?, ?, ?)";
+        String sql = "insert into customers (full_name, email, ssn) values (?, ?, ?)";
         return jdbcTemplate.update(sql, request.fullName(), request.email(), request.socialSecurityNumber()) > 0;
     }
 
     @Override
     public Optional<List<Customer>> fetchAll() {
-        String sql = "select * from customer";
+        String sql = "select * from customers";
         Optional<List<Customer>> optional;
         try {
             optional = Optional.of(jdbcTemplate.query(sql, new CustomerMapper()));
@@ -42,7 +42,7 @@ public class CustomerDaoImpl implements BaseDao{
 
     @Override
     public Optional<Customer> fetchById(Long id) {
-        String sql = "select * from customer where id = ?";
+        String sql = "select * from customers where id = ?";
         Optional<Customer> optional;
         try {
             optional = Optional.ofNullable(jdbcTemplate.queryForObject(sql, new CustomerMapper(), id));
@@ -54,18 +54,18 @@ public class CustomerDaoImpl implements BaseDao{
 
     @Override
     public boolean updateById(Long id, CustomerDtoRequest request) {
-        String sql = "update customer set full_name = ?, email = ?, ssn = ? where id = ?";
+        String sql = "update customers set full_name = ?, email = ?, ssn = ? where id = ?";
         return jdbcTemplate.update(sql, request, id, request) > 0;
     }
 
     @Override
     public boolean deleteById(Long id) {
-        String sql = "delete from customer where id = ?";
+        String sql = "delete from customers where id = ?";
         return jdbcTemplate.update(sql, id) > 0;
     }
 
     public Optional<Customer> fetchBySocialSecurityNumber(String ssn) {
-        String sql = "select * from customer where ssn = ?";
+        String sql = "select * from customers where ssn = ?";
         Optional<Customer> optional;
         try {
             optional = Optional.ofNullable(jdbcTemplate.queryForObject(sql, new CustomerMapper(), ssn));
@@ -76,7 +76,7 @@ public class CustomerDaoImpl implements BaseDao{
     }
 
     public Optional<Customer> fetchByEmail(String email) {
-        String sql = "select * from customer where email = ?";
+        String sql = "select * from customers where email = ?";
         Optional<Customer> optional;
         try {
             optional = Optional.ofNullable(jdbcTemplate.queryForObject(sql, new CustomerMapper(), email));
@@ -87,7 +87,7 @@ public class CustomerDaoImpl implements BaseDao{
     }
 
     public Optional<Customer> fetchByFullName(String fullName) {
-        String sql = "select * from customer where full_name = ?";
+        String sql = "select * from customers where full_name = ?";
         Optional<Customer> optional;
         try {
             optional = Optional.ofNullable(jdbcTemplate.queryForObject(sql, new CustomerMapper(), fullName));
@@ -98,7 +98,7 @@ public class CustomerDaoImpl implements BaseDao{
     }
 
     public Optional<Customer> getLastEntity() {
-        String sql = "select * from customer order by id desc limit 1";
+        String sql = "select * from customers order by id desc limit 1";
         Optional<Customer> optional;
         try {
             optional = Optional.ofNullable(jdbcTemplate.queryForObject(sql, new CustomerMapper()));
